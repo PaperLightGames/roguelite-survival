@@ -1,8 +1,15 @@
 [gd_scene format=3 uid="uid://c1pfp435njd62"]
 
+[ext_resource type="PackedScene" uid="uid://cxb2efgdqeoeq" path="res://scenes/player/player.tscn" id="1_piha8"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_awotp"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_horizon_color = Color(0.6627451, 0.67058825, 0.6862745, 1)
+sky_curve = 6.788223
+sky_energy_multiplier = 0.6
+ground_bottom_color = Color(0.38431373, 0.45490196, 0.54901963, 1)
+ground_horizon_color = Color(0.6627451, 0.67058825, 0.6862745, 1)
+ground_curve = 51.63791
+ground_energy_multiplier = 0.6
 
 [sub_resource type="Sky" id="Sky_piha8"]
 sky_material = SubResource("ProceduralSkyMaterial_awotp")
@@ -13,7 +20,8 @@ sky = SubResource("Sky_piha8")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_c576j"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piha8"]
+albedo_color = Color(0.23206031, 0.54885066, 0.29413024, 1)
 
 [node name="TestWorld" type="Node3D" unique_id=239190185]
 
@@ -21,11 +29,20 @@ glow_enabled = true
 environment = SubResource("Environment_kbvng")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1192476478]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.79986, -0.5916103, -0.10110032, -0.332, 0.2957993, 0.8957002, -0.50000006, 0.75, -0.43301266, 0, 3.149596, 0)
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=137907256]
-mesh = SubResource("BoxMesh_c576j")
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=366328945]
-transform = Transform3D(1, 0, 0, 0, 0.8789836, 0.47685197, 0, -0.47685197, 0.8789836, 0, 0.9872279, 1.6242666)
+transform = Transform3D(0.7071068, 0.39540908, -0.5862181, 0, 0.8290376, 0.5591929, 0.7071068, -0.39540908, 0.5862181, -40, 40.10517, 40)
+projection = 1
+size = 60.0
+
+[node name="Map" type="Node3D" parent="." unique_id=1358152746]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map" unique_id=894230417]
+use_collision = true
+size = Vector3(50, 1, 50)
+material = SubResource("StandardMaterial3D_piha8")
+
+[node name="Player" parent="." unique_id=488259233 instance=ExtResource("1_piha8")]
+transform = Transform3D(0.8838835, 0, -0.8838835, 0, 1.25, 0, 0.8838835, 0, 0.8838835, 0.85784435, 1.7020786, -1.2281771)
