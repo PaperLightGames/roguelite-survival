@@ -14,10 +14,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	# Get input direction relative to the camera's horizontal (Y-axis) rotation.
+	# Using only the Y rotation ignores the camera tilt so movement stays on the XZ plane.
 	var input_dir := Input.get_vector("left", "right", "up", "down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var cam_y_rot := get_viewport().get_camera_3d().global_rotation.y
+	var cam_basis := Basis(Vector3.UP, cam_y_rot)
+	var direction := (cam_basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED

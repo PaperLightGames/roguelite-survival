@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://c1pfp435njd62"]
 
 [ext_resource type="PackedScene" uid="uid://cxb2efgdqeoeq" path="res://scenes/player/player.tscn" id="1_piha8"]
+[ext_resource type="PackedScene" uid="uid://cbkalvfm6pwor" path="res://scenes/world/tree_test/tree_test.tscn" id="2_kbvng"]
+[ext_resource type="Shader" uid="uid://bk1iiwenb4gpv" path="res://paint.gdshader" id="3_c576j"]
+[ext_resource type="Script" uid="uid://f0rpxysbat3a" path="res://levels/camera_pivot_point.gd" id="4_lqt7o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_awotp"]
 sky_horizon_color = Color(0.6627451, 0.67058825, 0.6862745, 1)
@@ -23,27 +26,79 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piha8"]
 albedo_color = Color(0.23206031, 0.54885066, 0.29413024, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqt7o"]
+shader = ExtResource("3_c576j")
+shader_parameter/effect_strength = 0.6499999854712
+shader_parameter/saturation = 1.15
+shader_parameter/paper_tint = Color(0.98, 0.96, 0.91, 1)
+shader_parameter/paper_blend = 0.08
+shader_parameter/stroke_size = 2.0
+shader_parameter/stroke_samples = 6
+shader_parameter/stroke_randomness = 0.25
+shader_parameter/edge_strength = 0.6
+shader_parameter/edge_thickness = 1.2
+shader_parameter/edge_color = Color(0.15, 0.12, 0.1, 1)
+shader_parameter/color_levels = 18.0
+shader_parameter/quantize_softness = 0.4
+shader_parameter/bleed_radius = 2.5
+shader_parameter/pigment_density = 0.35
+shader_parameter/wobble_speed = 0.3
+shader_parameter/grain_intensity = 0.06999999843536
+
 [node name="TestWorld" type="Node3D" unique_id=239190185]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=838147909]
 environment = SubResource("Environment_kbvng")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1192476478]
-transform = Transform3D(-0.79986, -0.5916103, -0.10110032, -0.332, 0.2957993, 0.8957002, -0.50000006, 0.75, -0.43301266, 0, 3.149596, 0)
+transform = Transform3D(-0.7882134, -0.60220927, 0.1267418, 0.41751477, -0.37199202, 0.82903755, -0.45210716, 0.70637506, 0.5446404, 0, 3.149596, 0)
 shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=366328945]
-transform = Transform3D(0.7071068, 0.39540908, -0.5862181, 0, 0.8290376, 0.5591929, 0.7071068, -0.39540908, 0.5862181, -40, 40.10517, 40)
-projection = 1
-current = true
-size = 60.0
+shadow_opacity = 0.85
+sky_mode = 1
 
 [node name="Map" type="Node3D" parent="." unique_id=1358152746]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map" unique_id=894230417]
 use_collision = true
-size = Vector3(50, 1, 50)
+size = Vector3(50, 1.2, 50)
 material = SubResource("StandardMaterial3D_piha8")
 
 [node name="Player" parent="." unique_id=488259233 instance=ExtResource("1_piha8")]
 transform = Transform3D(0.8838835, 0, -0.8838835, 0, 1.25, 0, 0.8838835, 0, 0.8838835, 0.85784435, 1.7020786, -1.2281771)
+
+[node name="Node3D" parent="." unique_id=439517237 instance=ExtResource("2_kbvng")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 14.491943, 0.6000023, 8.951046)
+
+[node name="Node3D2" parent="." unique_id=286266325 instance=ExtResource("2_kbvng")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 4.9933624, 0.6000023, -19.159775)
+
+[node name="Node3D3" parent="." unique_id=1407634924 instance=ExtResource("2_kbvng")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -14.21763, 0.6000023, -16.005648)
+
+[node name="Node3D4" parent="." unique_id=1207317388 instance=ExtResource("2_kbvng")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -5.2176304, 0.6000023, -10.217313)
+
+[node name="Node3D5" parent="." unique_id=1951122796 instance=ExtResource("2_kbvng")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -14.589594, 0.6000023, 16.605042)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1916957648]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1562444692]
+material = SubResource("ShaderMaterial_lqt7o")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CameraPivotPoint" type="Marker3D" parent="." unique_id=984096281]
+script = ExtResource("4_lqt7o")
+rotation_step = 90.0
+rotation_duration = 0.5
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivotPoint" unique_id=366328945]
+transform = Transform3D(0.7071068, 0.39540908, -0.5862181, 0, 0.8290376, 0.5591929, 0.7071068, -0.39540908, 0.5862181, -40, 40.10517, 40)
+projection = 1
+current = true
+size = 60.0
+far = 150.0
