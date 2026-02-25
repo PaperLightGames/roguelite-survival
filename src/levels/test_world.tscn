@@ -35,6 +35,7 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="." unique_id=366328945]
 transform = Transform3D(0.7071068, 0.39540908, -0.5862181, 0, 0.8290376, 0.5591929, 0.7071068, -0.39540908, 0.5862181, -40, 40.10517, 40)
 projection = 1
+current = true
 size = 60.0
 
 [node name="Map" type="Node3D" parent="." unique_id=1358152746]
