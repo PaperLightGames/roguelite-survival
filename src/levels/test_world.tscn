@@ -21,14 +21,14 @@ sky_material = SubResource("ProceduralSkyMaterial_awotp")
 background_mode = 2
 sky = SubResource("Sky_piha8")
 tonemap_mode = 2
-glow_enabled = true
+adjustment_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piha8"]
 albedo_color = Color(0.23206031, 0.54885066, 0.29413024, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lqt7o"]
 shader = ExtResource("3_c576j")
-shader_parameter/effect_strength = 0.6499999854712
+shader_parameter/effect_strength = 0.73999998345952
 shader_parameter/saturation = 1.15
 shader_parameter/paper_tint = Color(0.98, 0.96, 0.91, 1)
 shader_parameter/paper_blend = 0.08
@@ -43,7 +43,7 @@ shader_parameter/quantize_softness = 0.4
 shader_parameter/bleed_radius = 2.5
 shader_parameter/pigment_density = 0.35
 shader_parameter/wobble_speed = 0.3
-shader_parameter/grain_intensity = 0.06999999843536
+shader_parameter/grain_intensity = 0.05999999865888
 
 [node name="TestWorld" type="Node3D" unique_id=239190185]
 
