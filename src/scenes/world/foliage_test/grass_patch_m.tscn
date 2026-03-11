@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b8i12fpehbmlk"]
+
+[ext_resource type="Material" uid="uid://cbmw6ek487e8w" path="res://scenes/world/foliage_test/grass_3d_mat.tres" id="1_rhyqx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r7mne"]
+size = Vector3(0.35, 1, 0.35)
+
+[node name="GrassFoliage3d" type="Node3D" unique_id=147737225]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=592998470]
+transform = Transform3D(1.093954, 0.16805136, 0, -0.115172245, 1.5962218, 0, 0, 0, 1.1, -0.43902886, 0.5147941, -0.08517825)
+mesh = SubResource("BoxMesh_r7mne")
+surface_material_override/0 = ExtResource("1_rhyqx")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1658226131]
+transform = Transform3D(1.1, 0, 0, 0, 1.5870641, 0.16418515, 0, -0.2395676, 1.087678, 0.5543235, 0.35048002, -0.059557818)
+mesh = SubResource("BoxMesh_r7mne")
+surface_material_override/0 = ExtResource("1_rhyqx")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=656696402]
+transform = Transform3D(1.1, 0, 0, 0, 1.6050438, 0, 0, 0, 1.1, 0.07281697, 0.60913724, 0.5603408)
+mesh = SubResource("BoxMesh_r7mne")
+surface_material_override/0 = ExtResource("1_rhyqx")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=551837599]
+transform = Transform3D(1.0945076, 0.16019301, 0, -0.109786615, 1.5970297, 0, 0, 0, 1.1, 0.90624404, 0.3650988, 0.58951265)
+mesh = SubResource("BoxMesh_r7mne")
+surface_material_override/0 = ExtResource("1_rhyqx")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="." unique_id=1237612916]
+transform = Transform3D(1.0993856, 0.053635485, -2.3283064e-10, -0.036626633, 1.5983918, -0.09309781, -0.003111034, 0.13576601, 1.0960534, 0.47936484, 0.13395794, 1.2583503)
+mesh = SubResource("BoxMesh_r7mne")
+surface_material_override/0 = ExtResource("1_rhyqx")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="." unique_id=1665173745]
+transform = Transform3D(1.0990607, -0.06631661, 0, 0.04527045, 1.5973592, -0.097516015, 0.004029131, 0.1421671, 1.095669, -0.47351763, 0.38606596, 1.0842897)
+mesh = SubResource("BoxMesh_r7mne")
+surface_material_override/0 = ExtResource("1_rhyqx")

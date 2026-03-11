@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cg3ij56ns4vqw"]
+
+[ext_resource type="Texture2D" uid="uid://c4oqaepdy8rkh" path="res://scenes/world/foliage_test/resources/sprite_0054.png" id="1_defp8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtxxr"]
+transparency = 1
+albedo_color = Color(0.23100002, 0.55, 0.2948, 1)
+albedo_texture = ExtResource("1_defp8")
+billboard_mode = 1
+billboard_keep_scale = true
+point_size = 128.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_bkpf4"]
+
+[node name="FoliageGrass1" type="MeshInstance3D" unique_id=107361422]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_dtxxr")
+mesh = SubResource("QuadMesh_bkpf4")

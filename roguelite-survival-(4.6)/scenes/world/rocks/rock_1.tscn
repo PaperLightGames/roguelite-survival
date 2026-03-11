@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bfljrh0xm6os"]
+
+[ext_resource type="ArrayMesh" uid="uid://ikv54jid1o8h" path="res://scenes/world/rocks/resources/rock1.obj" id="1_e60hk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e60hk"]
+albedo_color = Color(0.40655997, 0.40319997, 0.42, 1)
+
+[node name="Rock1" type="MeshInstance3D" unique_id=758016425]
+material_override = SubResource("StandardMaterial3D_e60hk")
+mesh = ExtResource("1_e60hk")
