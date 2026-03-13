@@ -6,7 +6,7 @@ extends Camera3D
 @export var transition_duration: float = 0.8
 
 const SIZE_DEFAULT: float = 82.0
-const SIZE_ZOOM: float = 47.0
+const SIZE_ZOOM: float = 46.0 # Default: 47
 
 var _following: bool = false
 var _initial_center: Vector3       # world point the camera orbits when static

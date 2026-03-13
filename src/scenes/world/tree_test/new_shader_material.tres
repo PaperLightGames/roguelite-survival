@@ -1,0 +1,101 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://etuguu70p4m0"]
+
+[sub_resource type="Shader" id="Shader_wqb2p"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.6.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+// --- WIND PARAMETERS ---
+uniform vec2 wind_direction = vec2(1.0, 0.5); // X and Z direction
+uniform float wind_speed = 1.2;               // Slower than grass
+uniform float wind_strength = 0.15;           // Less extreme bend than grass
+uniform float wind_randomness = 1.0;
+
+// --- TREE PARAMETERS ---
+uniform float tree_height = 2.0;       // Set this to your cone's local height in 3D space
+uniform float trunk_stiffness = 2.0;
+
+void vertex() {
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+	
+	// 1. NORMALIZE THE HEIGHT
+    // We divide the current vertex Y by the total tree_height so our math works
+    // smoothly from 0.0 (base) to 1.0 (tip), regardless of the actual scale.
+    float normalized_height = clamp(VERTEX.y / tree_height, 0.0, 1.0);
+    
+    // 2. APPLY STIFFNESS
+    // Using pow() creates a curve. If stiffness is 2.0, a point halfway up the tree (0.5)
+    // only gets 0.25 the wind strength, keeping the trunk solid while the top moves.
+    float height_weight = pow(normalized_height, trunk_stiffness);
+
+    // 3. CREATE SPATIAL RANDOMNESS
+    // So your whole forest doesn't sway in perfect unison.
+    vec3 world_pos = (MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+    float offset = (world_pos.x + world_pos.z) * wind_randomness;
+
+    // 4. CALCULATE THE PRIMARY BEND
+    float sway = sin(TIME * wind_speed + offset);
+    
+    // 5. APPLY THE MOVEMENT
+    VERTEX.x += wind_direction.x * sway * wind_strength * height_weight;
+    VERTEX.z += wind_direction.y * sway * wind_strength * height_weight;
+    
+    // Optional: Pull the tree down slightly as it bends to maintain its volume
+    VERTEX.y -= abs(sway) * wind_strength * height_weight * 0.1;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	SPECULAR = specular;
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+}
+"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_wqb2p")
+shader_parameter/albedo = Color(0.36262283, 0.6788018, 0.35876045, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/wind_direction = Vector2(1, 0)
+shader_parameter/wind_speed = 1.15
+shader_parameter/wind_strength = -0.075
+shader_parameter/wind_randomness = 1.0
+shader_parameter/tree_height = -0.02
+shader_parameter/trunk_stiffness = 2.0

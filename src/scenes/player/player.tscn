@@ -2,19 +2,173 @@
 
 [ext_resource type="Script" uid="uid://c8b52nyl1p4j3" path="res://scenes/player/player.gd" id="1_8afob"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
+radius = 0.45361328
+height = 2.027832
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
-albedo_color = Color(1, 0.14999998, 0.14999998, 1)
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_dovo2"]
+radius = 0.27
+height = 1.305
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8afob"]
+albedo_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+metallic_specular = 0.0
+roughness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_gmlin"]
+radius = 0.29
+height = 0.578
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8afob"]
+radius = 0.13
+height = 0.26
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dovo2"]
+albedo_color = Color(0.34, 0.19379997, 0.13599999, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8afob"]
+material = SubResource("StandardMaterial3D_dovo2")
+top_radius = 0.03
+bottom_radius = 0.03
+height = 0.39
+
+[sub_resource type="BoxMesh" id="BoxMesh_dovo2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmlin"]
+albedo_color = Color(0.4045111, 0.40451115, 0.4045111, 1)
+metallic = 0.3
+roughness = 0.0
+
+[sub_resource type="Animation" id="Animation_8afob"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerModel/Hand_L:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.39575478, -0.06275365, -0.09599259)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerModel/Hand_R:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.39950922, -0.06275365, -0.09599255)]
+}
+
+[sub_resource type="Animation" id="Animation_dovo2"]
+resource_name = "walking_animation"
+length = 0.43333334
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.12, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerModel/Hand_L:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.39575478, -0.06275365, -0.09599259), Vector3(-0.396, -0.02, -0.096), Vector3(-0.39575478, -0.06275365, -0.09599259)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerModel/Hand_R:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.39950922, -0.06275365, -0.09599255), Vector3(0.4, -0.02, -0.096), Vector3(0.39950922, -0.06275365, -0.09599255)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gmlin"]
+_data = {
+&"RESET": SubResource("Animation_8afob"),
+&"walking_animation": SubResource("Animation_dovo2")
+}
 
 [node name="Player" type="CharacterBody3D" unique_id=1678041971]
 script = ExtResource("1_8afob")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=102787865]
-mesh = SubResource("CapsuleMesh_u8vuu")
-surface_material_override/0 = SubResource("StandardMaterial3D_3vyb7")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=848409823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1831522e-05, 0.07055664, 0)
+shape = SubResource("CapsuleShape3D_8afob")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1217760079]
-shape = SubResource("CapsuleShape3D_u8vuu")
+[node name="PlayerModel" type="Node3D" parent="." unique_id=850491164]
+transform = Transform3D(1.15, 0, 0, 0, 1.15, 0, 0, 0, 1.15, 0, 0, 0)
+
+[node name="Torso" type="MeshInstance3D" parent="PlayerModel" unique_id=1654549041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2766423, 0)
+mesh = SubResource("CapsuleMesh_dovo2")
+surface_material_override/0 = SubResource("StandardMaterial3D_8afob")
+
+[node name="Head" type="MeshInstance3D" parent="PlayerModel" unique_id=1635733482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63794446, 0)
+mesh = SubResource("SphereMesh_gmlin")
+surface_material_override/0 = SubResource("StandardMaterial3D_8afob")
+
+[node name="Hand_L" type="MeshInstance3D" parent="PlayerModel" unique_id=10633897]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, -0.39575478, -0.06275365, -0.09599259)
+mesh = SubResource("CapsuleMesh_8afob")
+surface_material_override/0 = SubResource("StandardMaterial3D_8afob")
+
+[node name="Hand_R" type="MeshInstance3D" parent="PlayerModel" unique_id=1855800304]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0.39950922, -0.06275365, -0.09599255)
+mesh = SubResource("CapsuleMesh_8afob")
+surface_material_override/0 = SubResource("StandardMaterial3D_8afob")
+
+[node name="ItemRender" type="Marker3D" parent="PlayerModel" unique_id=1771293792]
+transform = Transform3D(0.86956525, 0, 0, 0, 0.86956525, 0, 0, 0, 0.86956525, 0.39357346, 0.0034980252, -0.22311854)
+
+[node name="Axe" type="Node3D" parent="PlayerModel/ItemRender" unique_id=1567802879]
+transform = Transform3D(0.8411108, 0.26778576, 0.46991837, -0.33108672, 0.94194657, 0.05584095, -0.42768472, -0.2025522, 0.8809419, 0.015692234, 0, -0.00066027045)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerModel/ItemRender/Axe" unique_id=515422085]
+transform = Transform3D(0.81472284, 0, 0, 0, 0.54607147, 0, 0, 0, 0.8308317, 0, 0.042769857, 0.004242122)
+mesh = SubResource("CylinderMesh_8afob")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="PlayerModel/ItemRender/Axe" unique_id=2068692700]
+transform = Transform3D(0.0154117765, 0, 0, 0, 0.8058505, 0, 0, 0, 0.09249852, 0, 0.52476704, 0.004142165)
+mesh = SubResource("BoxMesh_dovo2")
+surface_material_override/0 = SubResource("StandardMaterial3D_gmlin")
+
+[node name="WalkingAnimation" type="AnimationPlayer" parent="." unique_id=1607760335]
+libraries/ = SubResource("AnimationLibrary_gmlin")

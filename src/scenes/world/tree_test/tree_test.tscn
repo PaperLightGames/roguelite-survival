@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cbkalvfm6pwor"]
 
+[ext_resource type="Material" uid="uid://etuguu70p4m0" path="res://scenes/world/tree_test/new_shader_material.tres" id="1_xh1bq"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xh1bq"]
 albedo_color = Color(0.45, 0.25155, 0.008999991, 1)
 
@@ -15,9 +17,6 @@ top_radius = 0.0
 bottom_radius = 1.175
 radial_segments = 8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8xkxe"]
-albedo_color = Color(0.36262283, 0.6788018, 0.35876045, 1)
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_xh1bq"]
 top_radius = 0.0
 bottom_radius = 1.0
@@ -28,24 +27,24 @@ radius = 0.21191406
 
 [node name="Node3D" type="StaticBody3D" unique_id=1754924053]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=297273705]
+[node name="Trunk" type="MeshInstance3D" parent="." unique_id=297273705]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CylinderMesh_8xkxe")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1059942524]
 transform = Transform3D(1, 0, 0, 0, 0.79671144, 0, 0, 0, 1, 0, 2.4663408, 0)
 mesh = SubResource("CylinderMesh_hbl22")
-surface_material_override/0 = SubResource("StandardMaterial3D_8xkxe")
+surface_material_override/0 = ExtResource("1_xh1bq")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1957462322]
 transform = Transform3D(1, 0, 0, 0, 0.79671144, 0, 0, 0, 1, 0, 3.0144908, 0)
 mesh = SubResource("CylinderMesh_xh1bq")
-surface_material_override/0 = SubResource("StandardMaterial3D_8xkxe")
+surface_material_override/0 = ExtResource("1_xh1bq")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=2103066159]
 transform = Transform3D(0.8689234, 0, 0, 0, 0.63661987, 0, 0, 0, 0.8353368, 0, 3.316193, 0)
 mesh = SubResource("CylinderMesh_xh1bq")
-surface_material_override/0 = SubResource("StandardMaterial3D_8xkxe")
+surface_material_override/0 = ExtResource("1_xh1bq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=885144223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8969418, 0)
