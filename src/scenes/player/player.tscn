@@ -158,14 +158,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_8afob")
 [node name="ItemRender" type="Marker3D" parent="PlayerModel" unique_id=1771293792]
 transform = Transform3D(0.86956525, 0, 0, 0, 0.86956525, 0, 0, 0, 0.86956525, 0.39357346, 0.0034980252, -0.22311854)
 
-[node name="Axe" type="Node3D" parent="PlayerModel/ItemRender" unique_id=1567802879]
+[node name="Sword" type="Node3D" parent="PlayerModel/ItemRender" unique_id=1567802879]
 transform = Transform3D(0.8411108, 0.26778576, 0.46991837, -0.33108672, 0.94194657, 0.05584095, -0.42768472, -0.2025522, 0.8809419, 0.015692234, 0, -0.00066027045)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerModel/ItemRender/Axe" unique_id=515422085]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerModel/ItemRender/Sword" unique_id=515422085]
 transform = Transform3D(0.81472284, 0, 0, 0, 0.54607147, 0, 0, 0, 0.8308317, 0, 0.042769857, 0.004242122)
 mesh = SubResource("CylinderMesh_8afob")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="PlayerModel/ItemRender/Axe" unique_id=2068692700]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="PlayerModel/ItemRender/Sword" unique_id=2068692700]
 transform = Transform3D(0.0154117765, 0, 0, 0, 0.8058505, 0, 0, 0, 0.09249852, 0, 0.52476704, 0.004142165)
 mesh = SubResource("BoxMesh_dovo2")
 surface_material_override/0 = SubResource("StandardMaterial3D_gmlin")

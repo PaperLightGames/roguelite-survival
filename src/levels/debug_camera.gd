@@ -5,8 +5,8 @@ extends Camera3D
 ## Duration of the zoom and return-to-center transitions.
 @export var transition_duration: float = 0.8
 
-const SIZE_DEFAULT: float = 82.0
-const SIZE_ZOOM: float = 46.0 # Default: 47
+const SIZE_DEFAULT: float = 82.0 # 82
+const SIZE_ZOOM: float = 45.0 # Default: 47
 
 var _following: bool = false
 var _initial_center: Vector3       # world point the camera orbits when static
@@ -23,7 +23,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("debug_cam"):
+	if Input.is_action_just_pressed("zoom_cam"):
 		_toggle_zoom_cam()
 
 	# Pick the orbit center: player when following, original spot when static.
