@@ -83,7 +83,7 @@ transform = Transform3D(0.8000001, 0, 0, 0, 0.6632301, 0.44735432, 0, -0.4473543
 projection = 1
 current = true
 size = 82.0
-far = 132.75
+far = 122.55
 script = ExtResource("9_dbgcam")
 
 [node name="Node3D" parent="." unique_id=439517237 instance=ExtResource("2_kbvng")]
